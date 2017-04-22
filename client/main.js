@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 var list = new Mongo.Collection('list');
-
+Meteor.subscribe('todos');
 Template.listMain.helpers({
   showList: function () {
     return list.find({ userId: Meteor.userId() }, { sort: { date: -1 } });
