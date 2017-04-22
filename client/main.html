@@ -1,0 +1,48 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wunder Tasker</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header clearfix">
+            <h3 class="text-muted">WunderTasker</h3>
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-12">
+                {{> addNew}} {{> listMain}}
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="text-center" id="copyright">Made with <i class="fa fa-heart pulse"></i> by the <a href="https://github.com/littlewonder" target="_blank">thelittlewonder</a></p>
+        </footer>
+    </div>
+</body>
+
+<template name="addNew">
+  <form>
+    <div class="form-group">
+    <input type="text" name="taskName" class="form-control" placeholder="Add a New task..">
+    </div>
+  </form>
+</template>
+
+<template name="listMain">
+    {{#if count}}
+    <h4 class="text-center" id="message">Your To-Do is empty</h4>
+    {{/if}}
+  <ul>
+{{#each showList}}
+<li class="{{#if checked}} checked {{/if}}">
+  <input type="checkbox" checked="{{checked}}" class="toggle-checkbox">
+  <span>{{taskName}}</span>
+  <button class="delete">&times;</button>
+</li>
+{{/each}}
+  </ul>
+</template>
