@@ -2,7 +2,7 @@ var list = new Mongo.Collection('list');
 
 Template.listMain.helpers({
   showList: function () {
-    return list.find({},{sort:{date: -1}});
+    return list.find({userId: Meteor.userId()},{sort:{date: -1}});
   },
   count: function(){
     let count = list.find({}).count();
@@ -20,7 +20,9 @@ Template.addNew.events({
     let temp = new Date();
     list.insert({
       taskName: task,
-      date: temp
+      date: temp,
+      userId: Meteor.userId(),
+      userName: Meteor.user().username
     });
     event.target.taskName.value=""; //resetting placeholder
   }
@@ -36,3 +38,8 @@ Template.listMain.events({
   }
 }
 });
+
+
+Accounts.ui.config({ 
+    passwordSignupFields: 'USERNAME_ONLY', 
+}); 
